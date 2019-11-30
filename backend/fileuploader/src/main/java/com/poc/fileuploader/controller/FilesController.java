@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.poc.fileuploader.model.DTO;
 
+/**
+ * @author Caio Goulart Boni
+ */
 @RestController
 @CrossOrigin(methods = RequestMethod.POST)
 public class FilesController {
@@ -33,6 +37,8 @@ public class FilesController {
 			for (MultipartFile file : dto.getFiles()) {
 				System.out.println("Nome " + file.getOriginalFilename());
 				System.out.println("Bytes " + file.getBytes().toString());
+				System.out.println("Base64: " + Base64Utils.encode(file.getBytes()));
+				System.out.println();
 			}
 		}
 		
@@ -50,6 +56,8 @@ public class FilesController {
 			for (MultipartFile file : files) {
 				System.out.println("Nome " + file.getOriginalFilename());
 				System.out.println("Bytes " + file.getBytes().toString());
+				System.out.println("Base64: " + Base64Utils.encode(file.getBytes()));
+				System.out.println();
 			}
 		}
 		

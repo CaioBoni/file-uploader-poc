@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author Caio Goulart Boni
+ */
 public class DTO {
 	
 	private Long id;
