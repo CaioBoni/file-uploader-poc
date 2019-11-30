@@ -1,6 +1,7 @@
 package com.poc.fileuploader.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,16 @@ public class FilesController {
 	public ResponseEntity<?> receiveObj(
 			@RequestParam(name = "id", required = false) Long id, 
 			@RequestParam(name = "nome", required = false) String nome, 
-			@RequestParam(name = "files", required = false) MultipartFile files) throws IOException {
+			@RequestParam(name = "files", required = false) List<MultipartFile> files) throws IOException {
+		
+		System.out.println("ID: " + id);
+		if(files != null) {
+			for (MultipartFile file : files) {
+				System.out.println("Nome " + file.getOriginalFilename());
+				System.out.println("Bytes " + file.getBytes().toString());
+			}
+		}
+		
 		return new ResponseEntity<>(id, HttpStatus.OK);
 	}
 
