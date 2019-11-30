@@ -1,7 +1,7 @@
 # File Uploader Poc
 
-##Getting Started
+## Getting Started
 npm install ng2-file-upload --save
 
-###Link
+### Link
 https://github.com/valor-software/ng2-file-upload/issues/934
