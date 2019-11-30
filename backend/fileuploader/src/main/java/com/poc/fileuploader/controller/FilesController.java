@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,15 +24,26 @@ public class FilesController {
 		return new ResponseEntity<DTO>(dto, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/files", consumes = { "application/json", "multipart/form-data" })
+	@PostMapping(value = "/filesForm", consumes = { "application/json", "multipart/form-data" })
 	public ResponseEntity<?> receive(@ModelAttribute("dto") DTO dto) throws IOException {
 		
-		for (MultipartFile file : dto.getFiles()) {
-			System.out.println("Nome " + file.getOriginalFilename());
-			System.out.println("Bytes " + file.getBytes().toString());
+		System.out.println("ID: " + dto.getId());
+		if(dto.getFiles() != null) {
+			for (MultipartFile file : dto.getFiles()) {
+				System.out.println("Nome " + file.getOriginalFilename());
+				System.out.println("Bytes " + file.getBytes().toString());
+			}
 		}
 		
 		return new ResponseEntity<>(dto.getId().toString(), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/files")
+	public ResponseEntity<?> receiveObj(
+			@RequestParam(name = "id", required = false) Long id, 
+			@RequestParam(name = "nome", required = false) String nome, 
+			@RequestParam(name = "files", required = false) MultipartFile files) throws IOException {
+		return new ResponseEntity<>(id, HttpStatus.OK);
 	}
 
 }
