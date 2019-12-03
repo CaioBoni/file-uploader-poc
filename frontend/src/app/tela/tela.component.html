@@ -1,0 +1,15 @@
+<div>
+  <p>File Uploader POC</p>
+  <input type="text" [(ngModel)]="dto.nome" id="nome" name="nome" /><br/>
+  <br/>
+  <app-file-uploader #uploaderFiles></app-file-uploader>
+  <br/>
+  <button type="button" class="btn btn-success btn-xs" (click)="upload()">
+        <span class="glyphicon glyphicon-upload"></span> Upload
+      </button>
+  <br/>
+  <br/>
+  <button type="button" class="btn btn-success btn-xs" (click)="onSubmit()">
+        <span class="glyphicon glyphicon-upload"></span> Enviar
+      </button>
+</div>
